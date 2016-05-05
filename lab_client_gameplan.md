@@ -45,7 +45,53 @@ config.middleware.insert_before 0, 'Rack::Cors' do
 end
 ```
 
-4. in `main.js` for the client, begin by defining a baseUrl and write code in `$(document).ready()`
+4. in `index.html`
+
+```html
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- Require external assets -->
+    <link rel="stylesheet" href="style.css" />
+    <script src="jquery-2.2.3.min.js"></script>
+    <!-- Always include jquery before your own code -->
+    <script src="mustache.min.js"></script>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <!-- Give the script an id for simple access in our JavaScript file -->
+    <!-- Using mustache.min.js as a template to access JS from our HTMl -->
+
+    <!-- Product summary  -->
+    <script id="product-summary" type="x-tmpl-mustache">
+    <h2><a href="javascript:void(0);" data-id="{{id}}">{{title}}</a></h2>
+    <hr />
+    </script>
+
+    <!-- Individual Product Show Page -->
+    <div id="products"></div>
+    <script id="product-details" type="x-tmpl-mustache">
+    <a href="javascript:void(0);" id="back">&lt; Back </a>
+    <h1> {{title}}             </h1>
+    <p>  {{description}}       </p>
+    <p>  Price: {{price}}      </p>
+    <hr />
+    </script>
+
+    <!-- Div for all products (index) -->
+    <div id="products"></div>
+    <!-- Div for single product show -->
+    <div id="single-product"></div>
+  </body>
+</html>
+
+```
+
+5. in `main.js` for the client, begin by defining a baseUrl and write code in `$(document).ready()`
 
 ```js
 // main.js
@@ -68,7 +114,7 @@ $(document).ready(function() {
       while (counter--) {
         // Create render variable w/ Mustache method rendering the products
         var rendered = Mustache.render(template, products[counter]);
-        // Pass each rendered product and append to #products
+        // Pass each rendered product and append to #products (div)
         $("#products").append(rendered);
       }
     },
@@ -85,7 +131,7 @@ Implement the ability to view the product details when clicking on a product tit
 # show method in products_controller.rb in Rails project folder
 
 respond_to do |format|
-  format.html { render } # render questions/show.html.erb
+  format.html { render } # render products/show.html.erb
   format.json { render json: @product.to_json }
   format.xml  { render xml: @product.to_xml }
 end
