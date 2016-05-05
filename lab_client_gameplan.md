@@ -45,7 +45,7 @@ config.middleware.insert_before 0, 'Rack::Cors' do
 end
 ```
 
-4. in `index.html`
+4. In `index.html`
 
 ```html
 <!-- index.html - note that this the completed code -->
