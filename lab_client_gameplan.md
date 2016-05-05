@@ -2,12 +2,12 @@
 
 Build a standalone jQuery client to your Amazon application. The client must consist of only HTML, CSS and Javascript files.
 
-1. Build amazon_client directory with files [index.html, jquery.js, main.js, mustache.min.js, style.css]
-2. Link to the files in html
+1. Build amazon_client directory with files: `index.html`, `jquery.js`, `main.js`, `mustache.min.js`, `style.css`
+2. Link to the asset files in `index.html`
 
 When you open the first page of your application, it must display a listing of all the products. Only display the title of the product as a link with `<hr>` underneath it.
 
-1. Add respond_to method in `index` method in `products_controller.rb` with the necessary attributes selected from @products
+1. Add respond_to method in `index` method in `products_controller.rb` with the necessary attributes selected from `@products`
 
 ```ruby
 # index method in products_controller.rb in Rails project
@@ -209,3 +209,5 @@ $('#single-product').click("#back", function() {
 ```
 
 [Stretch 3]: The details page should also contain a listing of all the product reviews underneath.
+
+lol wat
