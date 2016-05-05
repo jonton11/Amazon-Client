@@ -14,6 +14,7 @@ Add respond_to method in `index` method in `products_controller.rb` with the nec
 
 respond_to do |format|
   format.html { render }
+  # We need to pass the attributes necessary for @products or it will throw an error
   format.json { render json: @products.select(:id, :title, :sale_price) }
 end
 ```
@@ -210,4 +211,25 @@ $('#single-product').click("#back", function() {
 
 [Stretch 3]: The details page should also contain a listing of all the product reviews underneath.
 
-<!-- lol wat happened to my numbers -->
+We need to include the reviews when we render in json
+
+```ruby
+# show method in our products controller
+
+format.json { render json: @product.to_json(include: :reviews) }
+```
+
+Then loop through the reviews in our `index.html` by creating a loop using the `Mustache` template
+
+```html
+<!-- Within our <script id="product-details" type="x-tmpl-mustache"> -->
+
+<h2> Reviews: </h2>
+<!-- Loop through the reviews in Mustache template -->
+{{#reviews}}
+<hr />
+<p> {{body}}          </p>
+<p> Stars: {{stars}}  </p>
+<!-- Note that stars are not popping up yet, but the value is -->
+{{/reviews}}
+```

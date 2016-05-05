@@ -1,6 +1,7 @@
-var BASE = "http://localhost:3000/";
+const BASE = "http://localhost:3000/";
 
 $(document).ready(function() {
+  // Display all items on index page
   $.ajax({
     method: "GET",
     url: BASE + "products.json",
@@ -24,7 +25,8 @@ $(document).ready(function() {
       alert("Problem loading products. Please retry");
     }
   });
-
+  
+  // Display an individual item when clicked
   $("#products").on("click", "h2 a", function() {
     $.ajax({
       method: "GET",
