@@ -229,7 +229,9 @@ Then loop through the reviews in our `index.html` by creating a loop using the `
 {{#reviews}}
 <hr />
 <p> {{body}}          </p>
-<p> Stars: {{stars}}  </p>
-<!-- Note that stars are not popping up yet, but the value is -->
+  {{#stars}}
+    {{.}} <i class="fa fa-star" aria-hidden="true"></i>
+  {{/stars}}
 {{/reviews}}
+<!-- Displays as (count stars) atm -->
 ```
