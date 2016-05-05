@@ -48,7 +48,7 @@ end
 4. in `index.html`
 
 ```html
-<!-- index.html -->
+<!-- index.html - note that this the completed code -->
 
 <!DOCTYPE html>
 <html>
@@ -75,7 +75,9 @@ end
     <!-- Individual Product Show Page -->
     <div id="products"></div>
     <script id="product-details" type="x-tmpl-mustache">
+    // Back button
     <a href="javascript:void(0);" id="back">&lt; Back </a>
+    // Attributes of the product
     <h1> {{title}}             </h1>
     <p>  {{description}}       </p>
     <p>  Price: {{price}}      </p>
@@ -161,12 +163,18 @@ $("#products").on("click", "h2 a", function() {
     method: "GET",
     url: BASE + "products/" + $(this).data("id") + ".json",
     success: function(product) {
+      // Grab html element of #product-details
       var template = $("#product-details").html();
+      // Parse it w/ Mustache
       Mustache.parse(template);
+      // Render and assign var
       var rendered = Mustache.render(template, product);
       $("#single-product").html(rendered);
+      // Add to the div with the rendered properties of the html
       $("#products").fadeOut(500, function() {
+        // Fade out all the products
         $("#single-product").fadeIn(500);
+        // After fading out, fade in the single product
       });
     },
     error: function() {
@@ -175,8 +183,11 @@ $("#products").on("click", "h2 a", function() {
   });
 });
 
+// Back button
 $('#single-product').click("#back", function() {
+  // Fade out the single product
   $('#single-product').fadeOut(500, function() {
+    // Fade in all the products again
     $('#products').fadeIn(500);
   });
 });
