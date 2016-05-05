@@ -7,7 +7,7 @@ Build a standalone jQuery client to your Amazon application. The client must con
 
 When you open the first page of your application, it must display a listing of all the products. Only display the title of the product as a link with `<hr>` underneath it.
 
-1. Add respond_to method in `index` method in `products_controller.rb` with the necessary attributes selected from `@products`
+Add respond_to method in `index` method in `products_controller.rb` with the necessary attributes selected from `@products`
 
 ```ruby
 # index method in products_controller.rb in Rails project
@@ -18,7 +18,7 @@ respond_to do |format|
 end
 ```
 
-2. Add `gem 'rack-cors', require: 'rack/cors'` to `Gemfile` don't forget to `bundle`
+Add `gem 'rack-cors', require: 'rack/cors'` to `Gemfile` don't forget to `bundle`
 
 ```ruby
 # Gemfile
@@ -32,7 +32,7 @@ gem 'rack-cors', require: 'rack/cors'
 bundle
 rails s
 ```
-3. Add to `application.rb` inside the `Application` class
+Add to `application.rb` inside the `Application` class
 
 ```ruby
 # Application class in application.rb in Rails project
@@ -45,7 +45,7 @@ config.middleware.insert_before 0, 'Rack::Cors' do
 end
 ```
 
-4. In `index.html`
+In `index.html`
 
 ```html
 <!-- index.html - note that this the completed code -->
@@ -93,7 +93,7 @@ end
 
 ```
 
-5. in `main.js` for the client, begin by defining a baseUrl and write code in `$(document).ready()`
+In `main.js` for the client, begin by defining a baseUrl and write code in `$(document).ready()`
 
 ```js
 // main.js
@@ -210,4 +210,4 @@ $('#single-product').click("#back", function() {
 
 [Stretch 3]: The details page should also contain a listing of all the product reviews underneath.
 
-lol wat
+<!-- lol wat happened to my numbers -->
