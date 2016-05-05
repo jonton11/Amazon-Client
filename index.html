@@ -8,6 +8,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
     <!-- <link rel="stylesheet" href="style.css" /> -->
     <script src="jquery-2.2.3.min.js"></script>
     <!-- Always include jquery before your own code -->
@@ -41,8 +42,11 @@
     {{#reviews}}
     <hr />
     <p>      {{body}}          </p>
-    <p>      Stars: {{stars}}    </p>
-
+    <!-- Loop through the stars -->
+    <!-- Still a little buggy, only display count with stars atm -->
+      {{#stars}}
+        {{.}} <i class="fa fa-star" aria-hidden="true"></i>
+      {{/stars}}
     {{/reviews}}
 
     </script>
