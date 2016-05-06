@@ -39,7 +39,7 @@ $(document).ready(function() {
         while (i--) {
           reviews[i].render_stars = getStars(reviews[i].stars);
         }
-        // console.log(reviews);
+        console.log(reviews);
 
         Mustache.parse(template);
         var rendered = Mustache.render(template, product);
@@ -67,14 +67,19 @@ var getStars = function(stars) {
 
   if (stars === 1) {
     renderedStars = "&#9733;&#9734;&#9734;&#9734;&#9734;";
+    // 1: 9733 4: 9734
   } else if (stars === 2) {
     renderedStars = "&#9733;&#9733;&#9734;&#9734;&#9734;";
+    // 2: 9733 3: 9734
   } else if (stars === 3) {
     renderedStars = "&#9733;&#9733;&#9733;&#9734;&#9734;";
+    // 3: 9733 2: 9734
   } else if (stars === 4) {
     renderedStars = "&#9733;&#9733;&#9733;&#9733;&#9734;";
+    // 4: 9733 1: 9734
   } else {
     renderedStars = "&#9733;&#9733;&#9733;&#9733;&#9733;";
+    // 5: 9733
   }
 
   return renderedStars;

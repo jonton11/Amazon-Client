@@ -222,7 +222,7 @@ format.json { render json: @product.to_json(include: :reviews) }
 Then loop through the reviews in our `index.html` by creating a loop using the `Mustache` template
 
 ```js
-// In main.js - Stars implemented fully courtesy of Jane
+// In main.js - Stars implemented fully, courtesy of Jane
 
 // Within our $("#products").on("click") function before the Mustache.render() is called
 
