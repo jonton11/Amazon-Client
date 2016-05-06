@@ -221,17 +221,48 @@ format.json { render json: @product.to_json(include: :reviews) }
 
 Then loop through the reviews in our `index.html` by creating a loop using the `Mustache` template
 
+```js
+// In main.js
+
+// Within our $("#products").on("click") function before the Mustache.render() is called
+
+var reviews = product.reviews;
+var i = reviews.length;
+while (i--) {
+  reviews[i].render_stars = getStars(reviews[i].stars);
+}
+// console.log(reviews); // for debugging
+
+// External method outside of $(document).ready()
+
+var getStars = function(stars) {
+  var renderedStars;
+  if (stars === 1) {
+    renderedStars = "&#9733;&#9734;&#9734;&#9734;&#9734;";
+  } else if (stars === 2) {
+    renderedStars = "&#9733;&#9733;&#9734;&#9734;&#9734;";
+  } else if (stars === 3) {
+    renderedStars = "&#9733;&#9733;&#9733;&#9734;&#9734;";
+  } else if (stars === 4) {
+    renderedStars = "&#9733;&#9733;&#9733;&#9733;&#9734;";
+  } else {
+    renderedStars = "&#9733;&#9733;&#9733;&#9733;&#9733;";
+  }
+  return renderedStars;
+};
+```
+
 ```html
+<!-- In our index.html -->
+
 <!-- Within our <script id="product-details" type="x-tmpl-mustache"> -->
 
 <h2> Reviews: </h2>
 <!-- Loop through the reviews in Mustache template -->
 {{#reviews}}
-<hr />
-<p> {{body}}          </p>
-  {{#stars}}
-    {{.}} <i class="fa fa-star" aria-hidden="true"></i>
-  {{/stars}}
+  <hr />
+  <p> {{body}} </p>
+  <p> {{{render_stars}}}</p>
+<!-- render_stars is an attribute in our reviews hash created when we loop through our reviews.stars in main.js -->
 {{/reviews}}
-<!-- Displays as (count stars) atm -->
 ```

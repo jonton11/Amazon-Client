@@ -25,7 +25,7 @@ $(document).ready(function() {
       alert("Problem loading products. Please retry");
     }
   });
-  
+
   // Display an individual item when clicked
   $("#products").on("click", "h2 a", function() {
     $.ajax({
@@ -33,6 +33,14 @@ $(document).ready(function() {
       url: BASE + "products/" + $(this).data("id") + ".json",
       success: function(product) {
         var template = $("#product-details").html();
+
+        var reviews = product.reviews;
+        var i = reviews.length;
+        while (i--) {
+          reviews[i].render_stars = getStars(reviews[i].stars);
+        }
+        // console.log(reviews);
+
         Mustache.parse(template);
         var rendered = Mustache.render(template, product);
         $("#single-product").html(rendered);
@@ -53,3 +61,22 @@ $(document).ready(function() {
   });
 
 });
+
+var getStars = function(stars) {
+  var renderedStars;
+
+  if (stars === 1) {
+    renderedStars = "&#9733;&#9734;&#9734;&#9734;&#9734;";
+  } else if (stars === 2) {
+    renderedStars = "&#9733;&#9733;&#9734;&#9734;&#9734;";
+  } else if (stars === 3) {
+    renderedStars = "&#9733;&#9733;&#9733;&#9734;&#9734;";
+  } else if (stars === 4) {
+    renderedStars = "&#9733;&#9733;&#9733;&#9733;&#9734;";
+  } else {
+    renderedStars = "&#9733;&#9733;&#9733;&#9733;&#9733;";
+  }
+
+  return renderedStars;
+
+};
